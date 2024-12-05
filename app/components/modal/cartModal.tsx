@@ -11,7 +11,7 @@ interface CartModalProps {
     };
 }
 
-const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose, cart }) => {
+const CartModal = ({ isOpen, onClose, cart }: CartModalProps) => {
     const dispatch = useDispatch();
 
     if (!isOpen) return null;

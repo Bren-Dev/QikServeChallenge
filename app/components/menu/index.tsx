@@ -10,10 +10,10 @@ import Modal from "../modal/modal";
 import { addToCart, decrementQuantity, incrementQuantity } from "@/app/redux/slices/cartSlice";
 import { RootState } from "@/app/redux/store";
 import CartModal from "../modal/cartModal";
+import { BannerImage } from "../bannerImage";
 
 const Menu = () => {
-    const [bannerImage, setBannerImage] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
+
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [activeSectionId, setActiveSectionId] = useState<number>(242403);
     const [visibleSections, setVisibleSections] = useState<Set<number>>(new Set());
@@ -70,29 +70,6 @@ const Menu = () => {
         setSelectedItem(null);
     };
 
-    useEffect(() => {
-        const fetchRestaurantDetails = async () => {
-            try {
-                const response = await fetch('/api/venue');
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                setBannerImage(data.webSettings.bannerImage);
-            } catch (error: unknown) {
-                if (error instanceof Error) {
-                    setError(error.message);
-                } else {
-                    setError('Ocorreu um erro inesperado.');
-                }
-                console.error('Erro ao buscar os detalhes do restaurante:', error);
-            }
-        };
-
-        fetchRestaurantDetails();
-    }, []);
 
     useEffect(() => {
         dispatch(fetchMenuItems());
@@ -109,8 +86,7 @@ const Menu = () => {
     };
 
 
-
-    if (menuError || error) {
+    if (menuError) {
         return <p className="text-red-500">Erro ao carregar o menu: {menuError}</p>;
     }
 
@@ -119,27 +95,23 @@ const Menu = () => {
     }
 
     return (
-        <div className="menu-container bg-[#EEEEEE]">
-            {bannerImage ? (
-                <img src={bannerImage} alt="Restaurant Banner" />
-            ) : (
-                <p>Carregando banner...</p>
-            )}
+        <div className="bg-white lg:bg-[#EEEEEE]">
 
-            <div className="w-full flex flex-col justify-center items-center">
-                <div className="border border-solid border-[#8A94A4] bg-white px-[12px] py-[10px] flex gap-[10px] items-center max-w-[1024px] w-full rounded-lg shadow-md my-[6px]">
+            <BannerImage />
+            <div className="w-full flex flex-col justify-center border-t-[5px] border-t-[white] border-solid items-center">
+
+                <div className=" border border-solid border-[#8A94A4] bg-white px-[12px] py-[10px] flex gap-[10px] items-center max-w-[1024px] w-full rounded-lg lg:shadow-md my-[6px]">
                     <GoSearch color="#8A94A4" className="w-[20px] h-[20px]" />
                     <input
                         type="text"
                         placeholder="Search menu items"
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        className="w-full bg-transparent text-[#2C2C2C] "
+                        className="w-full bg-transparent focus:outline-none  placeholder:text-[#8A94A4] lg:placeholder:text-[#2C2C2C]"
                     />
                 </div>
-
-                <div className="bg-[#F8F9FA] w-full max-w-[1024px] py-[32px] lg:px-[40px] flex gap-[24px]">
-                    <div className="lg:max-w-[600px] w-full bg-white shadow-[0px_2px_14px_0px_#00000024] py-[20px] px-[16px]">
+                <div className="lg:bg-[#F8F9FA] w-full max-w-[1024px] py-[32px] lg:px-[40px] flex gap-[24px]">
+                    <div className="lg:max-w-[600px] w-full bg-white lg:shadow-[0px_2px_14px_0px_#00000024] py-[20px] px-[16px]">
                         <div className="mb-[56px]">
                             <div className="flex gap-[24px]">
                                 {sections.map((section: MenuSection) => (
@@ -154,10 +126,10 @@ const Menu = () => {
                                             <img
                                                 src={section.images[0].image}
                                                 alt=""
-                                                className="w-[74px] h-[74px] rounded-full object-cover"
+                                                className="w-[62px] h-[62px] lg:w-[74px] lg:h-[74px] rounded-full object-cover"
                                             />
                                         </div>
-                                        <p className={`my-[16px] text-center font-medium ${activeSectionId === section.id ? 'text-[#121212]' : 'text-[#8A94A4]'}`}>
+                                        <p className={`mt-[24px] mb-[8px] text-center font-semibold ${activeSectionId === section.id ? 'text-[#121212]' : 'text-[#8A94A4]'}`}>
                                             {section.name}
                                         </p>
                                         {activeSectionId === section.id && (
@@ -173,7 +145,7 @@ const Menu = () => {
                             const isVisible = visibleSections.has(section.id);
                             return (
                                 <div key={section.id}>
-                                    <div className="flex items-center justify-between pb-[32px]" onClick={() => toggleSectionVisibility(section.id)}>
+                                    <div className="flex items-center justify-between pb-[32px] cursor-pointer" onClick={() => toggleSectionVisibility(section.id)}>
                                         <p className="text-2xl font-medium leading-[28.13px] tracking-[0.5px] text-[#121212]">{section.name}</p>
                                         <IoIosArrowDown
                                             style={{
@@ -187,13 +159,13 @@ const Menu = () => {
                                     {isVisible && filterItems(section.items).map((item) => (
                                         <div
                                             key={item.id}
-                                            className="flex justify-between pb-[16px]"
+                                            className="flex justify-between pb-[16px] cursor-pointer"
                                             onClick={() => openModal(item)}
                                         >
                                             <div>
-                                                <p>{item.name}</p>
-                                                <p className="text-base font-light leading-[18.75px] text-[#464646] truncate lg:max-w-[350px] max-w-[210px]">{item.description}</p>
-                                                <p className="text-base font-medium leading-[18.75px] text-[#464646]">R${item.price.toFixed(2)}</p>
+                                                <p className="text-[#121212] text-base font-medium leading-[18.75px]">{item.name}</p>
+                                                <p className="text-base py-[6px] font-light leading-[18.75px] text-[#464646] truncate lg:max-w-[350px] max-w-[210px]">{item.description}</p>
+                                                <p className="text-base font-semibold leading-[18.75px] text-[#464646]">R${item.price.toFixed(2)}</p>
                                             </div>
                                             {item.image && (
                                                 <img
@@ -214,12 +186,14 @@ const Menu = () => {
                         onClose={toggleCartModal}
                         cart={cart}
                     />
+
                     {!isMobile &&
                         <div className="shadow-[0px_2px_14px_0px_#00000026] w-[50%] h-[20%]  ">
                             <div className="bg-[#F8F9FA] py-[22px] px-[24px]">
                                 <h2 className="text-2xl text-[#464646] font-medium leading-[28.13px] tracking-[0.5px]">Carrinho</h2>
                             </div>
-                            <div className={`bg-white px-[24px] ${cart.total.toFixed(2) > 0 ? "py-[17px]" : "py-[24px]"} `}>
+                            <div className={`bg-white px-[24px] ${cart.total.toFixed(2) !== '0.00' ? "py-[17px]" : "py-[24px]"} `}>
+                                {cart.total.toFixed(2) === '0.00' && <p>Seu carrinho está vazio</p>}
                                 {cart.items.map((item) => (
                                     <div key={item.id} >
                                         <div className="flex justify-between">
@@ -227,17 +201,19 @@ const Menu = () => {
                                             <p className="font-semibold">R${item.price.toFixed(2)}</p>
                                         </div>
                                         <div className="flex gap-[6px] m-[8px]">
-                                            <button className="text-[20px] font-bold border-2 border-solid border-[#4F372F] bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center" onClick={() => dispatch(decrementQuantity(item.id))}>-</button>
+                                            <button className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer" onClick={() => dispatch(decrementQuantity(item.id))}>-</button>
                                             <span className="text-base font-bold leading-[18.75px]">{item.quantity}</span>
-                                            <button className="text-[20px] font-bold border-2 border-solid border-[#4F372F] bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center" onClick={() => dispatch(incrementQuantity(item.id))}>+</button>
+                                            <button className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer" onClick={() => dispatch(incrementQuantity(item.id))}>+</button>
                                         </div>
                                     </div>
                                 ))}
 
                             </div>
-                            {cart.total.toFixed(2) > 0 ? <div className="p-[16px] flex justify-between border-t-2 border-t-solid border-[#EEEEEE]"> <p>Total:  </p><p>R${cart.total.toFixed(2)}</p></div> : <p>Seu carrinho está vazio</p>
+                            {cart.total.toFixed(2) !== '0.00' &&
+                                <div className="p-[16px] flex justify-between border-t-2 border-t-solid border-[#EEEEEE]"> <p>Total:  </p><p>R${cart.total.toFixed(2)}</p></div>
                             }
                         </div>}
+
                 </div>
             </div>
 
