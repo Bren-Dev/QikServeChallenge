@@ -19,15 +19,18 @@ const CartModal = ({ isOpen, onClose, cart }: CartModalProps) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center h-full z-50">
-            <div className="bg-white w-full h-full  pt-6 px-6 relative">
-                <button
-                    className="absolute top-2 right-2 text-2xl text-gray-500"
-                    onClick={onClose}
-                >
-                    &times;
-                </button>
-                <p className="text-xl font-semibold mb-4">Basket</p>
-                <div>
+            <div className="bg-white w-full h-full">
+                <div className="border-b-[#DADADA] border-b border-solid px-6 flex justify-between items-center py-[23px]">
+                    <div></div>
+                    <p className="text-xl font-semibold">Basket</p>
+                    <button
+                        className="text-3xl text-[#4F372F]"
+                        onClick={onClose}
+                    >
+                        &times;
+                    </button>
+                </div>
+                <div className="px-6 py-[25px]">
                     {cart.items.length > 0 ? (
                         cart.items.map((item) => (
                             <div key={item.id} className="mb-4">
@@ -56,7 +59,7 @@ const CartModal = ({ isOpen, onClose, cart }: CartModalProps) => {
                         <p>Seu carrinho está vazio.</p>
                     )}
                 </div>
-                <div className="mt-4 border-t pt-4">
+                <div className="mt-4 border-t pt-4 px-6 ">
                     <div className="flex justify-between">
                         <p>Total:</p>
                         <p>R${cart.total.toFixed(2)}</p>

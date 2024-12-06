@@ -7,14 +7,15 @@ const Navbar = () => {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const navItems = [
-        { id: "menu", label: "MENU" },
-        { id: "entrar", label: "ENTRAR" },
-        { id: "contato", label: "CONTATO" },
+        { id: "menu", label: "Menu" },
+        { id: "entrar", label: "Entrar" },
+        { id: "contato", label: "Contato" },
     ];
 
     return (
         <nav className="bg-[#4E3629] text-white">
             <div className="flex items-center justify-between px-4 py-4 md:hidden">
+                <div></div>
                 <p className="text-lg font-bold ">{navItems.find(item => item.id === active)?.label}</p>
 
                 <button
@@ -43,7 +44,7 @@ const Navbar = () => {
                             setMobileMenuOpen(false);
                         }}
                     >
-                        <span className="text-xl font-normal leading-[23.44px]">
+                        <span className="text-xl font-normal leading-[23.44px] uppercase">
                             {item.label}
                         </span>
                         {active === item.id && (
