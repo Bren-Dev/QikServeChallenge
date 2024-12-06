@@ -43,7 +43,7 @@ const Modal = ({ item, onClose, onAddToCart }: ModalProps) => {
         : (item.price * quantity).toFixed(2);
 
     return (
-        <div className="fixed inset-0 flex justify-center items-center  bg-[#000000A6] bg-opacity-50 z-50 overflow-auto">
+        <div className="fixed bottom-0 w-full lg:inset-0 flex justify-center items-center  bg-[#000000A6] bg-opacity-50 z-50 overflow-auto">
             <div className="bg-white shadow-lg w-full max-w-[480px] lg:max-h-[90%] overflow-auto">
                 <div className="relative ">
                     {item.image && <img
