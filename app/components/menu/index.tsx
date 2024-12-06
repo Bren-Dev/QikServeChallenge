@@ -168,12 +168,12 @@ const Menu = () => {
                                                 className="flex justify-between pb-[16px] cursor-pointer"
                                                 onClick={() => openModal(item)}
                                             >
-                                                <div>
+                                                <div className="w-[50%] sm:w-[100%]">
 
                                                     <p className="text-[#121212] text-base font-medium leading-[18.75px]">
                                                         {quantity > 0 && <span className="text-sm bg-[#4F372F] text-white px-[5px] py-[2px] rounded-[4px]">{quantity}</span>}    {item.name}
                                                     </p>
-                                                    <p className="text-base py-[6px] font-light leading-[18.75px] text-[#464646] truncate lg:max-w-[350px] max-w-[210px]">{item.description}</p>
+                                                    <p className="text-base py-[6px] font-light leading-[18.75px] text-[#464646] truncate max-w-[350px]">{item.description}</p>
                                                     <p className="text-base font-semibold leading-[18.75px] text-[#464646]">R${item.price.toFixed(2)}</p>
                                                 </div>
                                                 {item.image && (
@@ -222,10 +222,7 @@ const Menu = () => {
                                             <p className="font-semibold">R${item.price.toFixed(2)}</p>
                                         </div>
                                         {item.modifier && (
-                                            <div className="text-sm text-gray-600">
-                                                <p>Modifier: {item.modifier.name}</p>
-                                                <p>Additional Price: R${item.modifier.price.toFixed(2)}</p>
-                                            </div>
+                                            <p className="text-sm text-gray-600"> {item.modifier.name}</p>
                                         )}
                                         <div className="flex gap-[6px] m-[8px]">
                                             <button
