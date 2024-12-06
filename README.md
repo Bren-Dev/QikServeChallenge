@@ -4,6 +4,8 @@
 
 Este é um aplicativo de delivery desenvolvido com **Next.js**, **React.js**, **Redux** e **Tailwind CSS**. O objetivo é oferecer uma experiência intuitiva e rápida para explorar o menu, adicionar itens ao carrinho e finalizar pedidos.
 
+![menu(2)](https://github.com/user-attachments/assets/a797f87a-127f-433c-a06a-a774d9187cfd)
+
 ## Funcionalidades
 
 - Visualização de menu com seções categorizadas.
@@ -46,16 +48,18 @@ yarn dev
 
 # Estrutura do projeto
 
+```plaintext
 📂 src/
 ├── 📂 app/
-│ ├── 📂 components/ # Componentes reutilizáveis
-│ ├── 📂 redux/ # Slices e store do Redux
-│ ├── 📂 styles/ # Estilos globais e configurações do Tailwind CSS
-│ ├── 📂 assets/ # Imagens e outros arquivos estáticos
-├── 📂 public/ # Arquivos públicos como favicon e imagens estáticas
-│ 📄 page.tsx # Página do Next.js
-├── 📄 .env.local # Variáveis de ambiente (não incluído no repositório)
-└── 📄 tailwind.config.js # Configuração do Tailwind CSS
+│   ├── 📂 components/     # Componentes reutilizáveis
+│   ├── 📂 redux/          # Slices e store do Redux
+│   ├── 📂 styles/         # Estilos globais e configurações do Tailwind CSS
+│   ├── 📂 assets/         # Imagens e outros arquivos estáticos
+├── 📂 public/             # Arquivos públicos como favicon e imagens estáticas
+│   📄 page.tsx            # Página do Next.js
+├── 📄 .env.local          # Variáveis de ambiente (não incluído no repositório)
+└── 📄 tailwind.config.js  # Configuração do Tailwind CSS
+```
 
 # **Sobre mim**
 
