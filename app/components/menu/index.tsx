@@ -93,22 +93,23 @@ const Menu = () => {
     if (menuStatus === "loading") {
         return <p>Carregando menu...</p>;
     }
-
+    console.log(cart)
     return (
         <div className="bg-white lg:bg-[#EEEEEE]">
 
             <BannerImage />
             <div className="w-full flex flex-col justify-center border-t-[5px] border-t-[white] border-solid items-center">
-
-                <div className=" border border-solid border-[#8A94A4] bg-white px-[12px] py-[10px] flex gap-[10px] items-center max-w-[1024px] w-full rounded-lg lg:shadow-md my-[6px]">
-                    <GoSearch color="#8A94A4" className="w-[20px] h-[20px]" />
-                    <input
-                        type="text"
-                        placeholder="Search menu items"
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                        className="w-full bg-transparent focus:outline-none  placeholder:text-[#8A94A4] lg:placeholder:text-[#2C2C2C]"
-                    />
+                <div className="w-full flex justify-center px-4">
+                    <div className="border border-solid border-[#8A94A4] bg-white px-[12px] py-[10px] flex gap-[10px] items-center max-w-[1024px] w-full rounded-lg lg:shadow-md my-[6px]">
+                        <GoSearch color="#8A94A4" className="w-[20px] h-[20px]" />
+                        <input
+                            type="text"
+                            placeholder="Search menu items"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            className="w-full bg-transparent focus:outline-none  placeholder:text-[#8A94A4] lg:placeholder:text-[#2C2C2C]"
+                        />
+                    </div>
                 </div>
                 <div className="lg:bg-[#F8F9FA] w-full max-w-[1024px] py-[32px] lg:px-[40px] flex gap-[24px]">
                     <div className="lg:max-w-[600px] w-full bg-white lg:shadow-[0px_2px_14px_0px_#00000024] py-[20px] px-[16px]">
@@ -156,29 +157,49 @@ const Menu = () => {
                                             }}
                                         />
                                     </div>
-                                    {isVisible && filterItems(section.items).map((item) => (
-                                        <div
-                                            key={item.id}
-                                            className="flex justify-between pb-[16px] cursor-pointer"
-                                            onClick={() => openModal(item)}
-                                        >
-                                            <div>
-                                                <p className="text-[#121212] text-base font-medium leading-[18.75px]">{item.name}</p>
-                                                <p className="text-base py-[6px] font-light leading-[18.75px] text-[#464646] truncate lg:max-w-[350px] max-w-[210px]">{item.description}</p>
-                                                <p className="text-base font-semibold leading-[18.75px] text-[#464646]">R${item.price.toFixed(2)}</p>
+                                    {isVisible && filterItems(section.items).map((item) => {
+                                        const cartItem = cart.items.find((cartItem) => cartItem.id === item.id);
+                                        const quantity = cartItem ? cartItem.quantity : 0;
+                                        const uniqueKey = `${item.id}-${item.modifier?.id || 'no-modifier'}`;
+                                        console.log('cartitem', cartItem, uniqueKey)
+                                        return (
+                                            <div
+                                                key={uniqueKey}
+                                                className="flex justify-between pb-[16px] cursor-pointer"
+                                                onClick={() => openModal(item)}
+                                            >
+                                                <div>
+
+                                                    <p className="text-[#121212] text-base font-medium leading-[18.75px]">
+                                                        {quantity > 0 && <span className="text-sm bg-[#4F372F] text-white px-[5px] py-[2px] rounded-[4px]">{quantity}</span>}    {item.name}
+                                                    </p>
+                                                    <p className="text-base py-[6px] font-light leading-[18.75px] text-[#464646] truncate lg:max-w-[350px] max-w-[210px]">{item.description}</p>
+                                                    <p className="text-base font-semibold leading-[18.75px] text-[#464646]">R${item.price.toFixed(2)}</p>
+                                                </div>
+                                                {item.image && (
+                                                    <img
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        className="w-[128px] h-[85px] rounded"
+                                                    />
+                                                )}
                                             </div>
-                                            {item.image && (
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.name}
-                                                    className="w-[128px] h-[85px] rounded"
-                                                />
-                                            )}
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
+
+
                                 </div>
                             );
                         })}
+                        {isMobile &&
+                            <div className="flex flex-col items-center space-y-4 ">
+                                <button className="px-4 py-2 text-[#4F372F] font-bold text-sm text-brown-800 underline rounded-md bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brown-500 focus:ring-offset-2">
+                                    View allergy information
+                                </button>
+                                <button onClick={() => setIsCartModalOpen(true)} className="px-6 py-3 bg-[#4F372F] text-white bg-brown-800 rounded-full font-medium text-sm flex items-center justify-center hover:bg-brown-700 focus:outline-none focus:ring-2 focus:ring-brown-500 focus:ring-offset-2">
+                                    Your basket <span className="mx-1">•</span> {cart.items.reduce((total, item) => total + item.quantity, 0)} item(s)
+                                </button>
+                            </div>}
                     </div>
 
                     <CartModal
@@ -194,19 +215,36 @@ const Menu = () => {
                             </div>
                             <div className={`bg-white px-[24px] ${cart.total.toFixed(2) !== '0.00' ? "py-[17px]" : "py-[24px]"} `}>
                                 {cart.total.toFixed(2) === '0.00' && <p>Seu carrinho está vazio</p>}
-                                {cart.items.map((item) => (
-                                    <div key={item.id} >
+                                {cart.items.map((item, index) => (
+                                    <div key={`${item.id}-${index}`}>
                                         <div className="flex justify-between">
                                             <p>{item.name}</p>
                                             <p className="font-semibold">R${item.price.toFixed(2)}</p>
                                         </div>
+                                        {item.modifier && (
+                                            <div className="text-sm text-gray-600">
+                                                <p>Modifier: {item.modifier.name}</p>
+                                                <p>Additional Price: R${item.modifier.price.toFixed(2)}</p>
+                                            </div>
+                                        )}
                                         <div className="flex gap-[6px] m-[8px]">
-                                            <button className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer" onClick={() => dispatch(decrementQuantity(item.id))}>-</button>
+                                            <button
+                                                className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer"
+                                                onClick={() => dispatch(decrementQuantity(item.id))}
+                                            >
+                                                -
+                                            </button>
                                             <span className="text-base font-bold leading-[18.75px]">{item.quantity}</span>
-                                            <button className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer" onClick={() => dispatch(incrementQuantity(item.id))}>+</button>
+                                            <button
+                                                className="text-[20px] font-bold bg-[#4F372F] rounded-full w-[20px] h-[20px] text-[#FFFFFF] flex items-center justify-center cursor-pointer"
+                                                onClick={() => dispatch(incrementQuantity(item.id))}
+                                            >
+                                                +
+                                            </button>
                                         </div>
                                     </div>
                                 ))}
+
 
                             </div>
                             {cart.total.toFixed(2) !== '0.00' &&

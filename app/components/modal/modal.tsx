@@ -116,12 +116,23 @@ const Modal = ({ item, onClose, onAddToCart }: ModalProps) => {
                     </div>
 
                     <button
-                        onClick={() => onAddToCart(item)}
+                        onClick={() =>
+                            onAddToCart({
+                                id: item.id,
+                                name: item.name,
+                                price: selectedOption ? selectedOption.price : item.price,
+                                quantity,
+                                description: item.description,
+                                image: item.images?.[0]?.image,
+                                modifier: selectedOption,
+                            })
+                        }
                         className="w-full bg-[#4F372F] mt-2 py-2 bg-brown-600 text-white rounded-full"
                         disabled={!selectedOption && item.modifiers && item.modifiers.length > 0}
                     >
                         Add to Order - R${totalPrice}
                     </button>
+
                 </div>
             </div>
         </div>
