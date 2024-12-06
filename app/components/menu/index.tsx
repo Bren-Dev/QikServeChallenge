@@ -8,7 +8,7 @@ import { GoSearch } from "react-icons/go";
 import { IoIosArrowDown } from "react-icons/io";
 import Modal from "../modal/modal";
 import { addToCart, decrementQuantity, incrementQuantity } from "@/app/redux/slices/cartSlice";
-import { RootState } from "@/app/redux/store";
+import { AppDispatch, RootState } from "@/app/redux/store";
 import CartModal from "../modal/cartModal";
 import { BannerImage } from "../bannerImage";
 
@@ -21,7 +21,7 @@ const Menu = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [isCartModalOpen, setIsCartModalOpen] = useState<boolean>(false);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const { sections, status: menuStatus, error: menuError } = useSelector((state: RootState) => state.menu);
     const cart = useSelector((state: RootState) => state.cart);
 

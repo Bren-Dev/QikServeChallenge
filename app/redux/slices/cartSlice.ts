@@ -7,6 +7,10 @@ interface CartItem {
   quantity: number;
   description?: string;
   image?: string;
+  modifier?: {
+    id: number;
+    name: string;
+  };
 }
 
 interface CartState {

@@ -6,10 +6,11 @@ interface CartModalProps {
     isOpen: boolean;
     onClose: () => void;
     cart: {
-        items: Array<{ id: string; name: string; price: number; quantity: number }>;
+        items: Array<{ id: number; name: string; price: number; quantity: number }>;
         total: number;
     };
 }
+
 
 const CartModal = ({ isOpen, onClose, cart }: CartModalProps) => {
     const dispatch = useDispatch();
