@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Delivery
+
+This is a Next.js project created with create-next-app.
+
+1. Table of Contents
+2. Getting Started
+3. Project Structure
+4. Assumptions and Decisions
+5. Technologies and Tools
+6. How to Run
+7. Learn More
+8. Deployment
+9. About Me
 
 ## Getting Started
 
-First, run the development server:
+To run the project locally:
 
-```bash
+Install the dependencies:
+
+bash
+Copiar código
+npm install
+
+# or
+
+yarn install
+
+# or
+
+pnpm install
+
+# or
+
+bun install
+Start the development server:
+
+bash
+Copiar código
 npm run dev
+
 # or
+
 yarn dev
+
 # or
+
 pnpm dev
+
 # or
+
 bun dev
-```
+Open http://localhost:3000 in your browser to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project uses the following folder structure:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+app/ - Contains the main application code following the Next.js App Router paradigm.
+app/page.tsx - Entry point for the main page. You can modify this file to edit the homepage.
+public/ - Static assets such as images or favicon.
+styles/ - Global styles for the application.
+Assumptions and Decisions
+Assumptions:
+The audience for this project is familiar with basic web development and Next.js concepts.
+The app is optimized for performance using server-side rendering (SSR) and Next.js features like dynamic routing and font optimization.
+Decisions:
+Font Optimization: We use next/font to integrate and optimize Geist, providing a modern and lightweight typography solution.
+TypeScript: The project is developed using TypeScript to improve code quality, type safety, and maintainability.
+Bundler Choice: We support multiple package managers (npm, yarn, pnpm, and bun) for flexibility.
+Technologies and Tools
+Framework: Next.js
+Language: TypeScript
+Styling: Tailwind CSS or styled-components (if applicable)
+Fonts: Geist (optimized using next/font)
+Deployment: Vercel
+How to Run
+Clone the repository:
 
-## Learn More
+bash
+Copiar código
+git clone https://github.com/your-repo/project.git
+cd project
+Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+bash
+Copiar código
+npm install
+Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+bash
+Copiar código
+npm run dev
+Access the app at http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For production:
 
-## Deploy on Vercel
+Build the application:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bash
+Copiar código
+npm run build
+Start the server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+bash
+Copiar código
+npm start
+Learn More
+Next.js Documentation - Learn about Next.js features and API.
+Learn Next.js - Interactive tutorial for beginners.
+Next.js GitHub Repository - Explore the source code and contribute.
+Deployment
+The project is designed to be deployed using the Vercel Platform. Vercel offers a seamless deployment experience for Next.js apps. For detailed instructions, refer to Next.js deployment documentation.
+
+## About Me
+
+I am Brenda and a passionate developer focused in modern web technologies, particularly React and Next.js. I focus on building scalable, maintainable, and user-friendly applications.
