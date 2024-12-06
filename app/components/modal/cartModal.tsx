@@ -40,14 +40,14 @@ const CartModal = ({ isOpen, onClose, cart }: CartModalProps) => {
                                 </div>
                                 <div className="flex items-center mt-2">
                                     <button
-                                        className="w-8 h-8 bg-[#4F372F] text-white rounded-full flex justify-center items-center"
+                                        className="w-[20px] h-[20px] bg-[#4F372F] text-white rounded-full flex justify-center items-center"
                                         onClick={() => dispatch(decrementQuantity(item.id))}
                                     >
                                         -
                                     </button>
                                     <span className="mx-4">{item.quantity}</span>
                                     <button
-                                        className="w-8 h-8 bg-[#4F372F] text-white rounded-full flex justify-center items-center"
+                                        className="w-[20px] h-[20px] bg-[#4F372F] text-white rounded-full flex justify-center items-center"
                                         onClick={() => dispatch(incrementQuantity(item.id))}
                                     >
                                         +

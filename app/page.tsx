@@ -7,7 +7,6 @@ import store from "./redux/store";
 export default function Home() {
   return (
     <div>
-
       <Provider store={store}>
         <main>
           <Navbar />

@@ -37,7 +37,7 @@ const Navbar = () => {
                 {navItems.map((item) => (
                     <li
                         key={item.id}
-                        className={`relative cursor-pointer flex items-center justify-center py-[14px] w-[232px] ${active === item.id ? "font-bold" : "font-normal"
+                        className={`relative cursor-pointer flex items-center justify-center py-[14px] lg:w-[232px] ${active === item.id ? "font-bold" : "font-normal"
                             }`}
                         onClick={() => {
                             setActive(item.id);
