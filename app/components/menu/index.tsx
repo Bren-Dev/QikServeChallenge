@@ -93,7 +93,7 @@ const Menu = () => {
     if (menuStatus === "loading") {
         return <p>Carregando menu...</p>;
     }
-    console.log(cart)
+
     return (
         <div className="bg-white lg:bg-[#EEEEEE]">
 
@@ -161,7 +161,7 @@ const Menu = () => {
                                         const cartItem = cart.items.find((cartItem) => cartItem.id === item.id);
                                         const quantity = cartItem ? cartItem.quantity : 0;
                                         const uniqueKey = `${item.id}-${item.modifier?.id || 'no-modifier'}`;
-                                        console.log('cartitem', cartItem, uniqueKey)
+
                                         return (
                                             <div
                                                 key={uniqueKey}
