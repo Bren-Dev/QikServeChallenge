@@ -4,6 +4,8 @@
 
 Este é um aplicativo de delivery desenvolvido com **Next.js**, **React.js**, **Redux** e **Tailwind CSS**. O objetivo é oferecer uma experiência intuitiva e rápida para explorar o menu, adicionar itens ao carrinho e finalizar pedidos.
 
+![menu(2)](https://github.com/user-attachments/assets/a797f87a-127f-433c-a06a-a774d9187cfd)
+
 ## Funcionalidades
 
 - Visualização de menu com seções categorizadas.
