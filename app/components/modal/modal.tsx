@@ -22,6 +22,7 @@ interface MenuItem {
     price: number;
     modifiers?: Modifier[];
     images: { id: number; image: string }[];
+    image: string
 }
 
 interface ModalProps {
