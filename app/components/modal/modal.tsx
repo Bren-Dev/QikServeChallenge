@@ -97,43 +97,45 @@ const Modal = ({ item, onClose, onAddToCart }: ModalProps) => {
                         </div>
                     )}
 
-                    <div className="flex items-center justify-center w-full mt-4">
-                        <div className="flex items-center gap-[22px] backdrop-blur">
-                            <button
-                                className={`text-[20px] font-bold ${quantity === 1 ? 'bg-[#DADADA]' : 'bg-[#4F372F]'} rounded-full w-[32px] h-[32px] text-[#FFFFFF] flex items-center justify-center`}
-                                onClick={handleDecrement}
-                                disabled={quantity === 1}
-                            >
-                                -
-                            </button>
-                            <span className="text-[#121212] text-2xl font-semibold leading-[28.64px]">{quantity}</span>
-                            <button
-                                className="text-[28px] font-bold  bg-[#4F372F] rounded-full w-[32px] h-[32px] text-[#FFFFFF] flex items-center justify-center"
-                                onClick={handleIncrement}
-                            >
-                                +
-                            </button>
+
+                    <div className="bg-[#FFFFFF4D] border-t-[#8A94A4] border-t lg:border-none">
+                        <div className="flex items-center justify-center w-full mt-4">
+                            <div className="flex items-center gap-[22px] backdrop-blur">
+                                <button
+                                    className={`text-[20px] font-bold ${quantity === 1 ? 'bg-[#DADADA]' : 'bg-[#4F372F]'} rounded-full w-[32px] h-[32px] text-[#FFFFFF] flex items-center justify-center`}
+                                    onClick={handleDecrement}
+                                    disabled={quantity === 1}
+                                >
+                                    -
+                                </button>
+                                <span className="text-[#121212] text-2xl font-semibold leading-[28.64px]">{quantity}</span>
+                                <button
+                                    className="text-[28px] font-bold  bg-[#4F372F] rounded-full w-[32px] h-[32px] text-[#FFFFFF] flex items-center justify-center"
+                                    onClick={handleIncrement}
+                                >
+                                    +
+                                </button>
+                            </div>
                         </div>
+
+                        <button
+                            onClick={() =>
+                                onAddToCart({
+                                    id: item.id,
+                                    name: item.name,
+                                    price: selectedOption ? selectedOption.price : item.price,
+                                    quantity,
+                                    description: item.description,
+                                    image: item.images?.[0]?.image,
+                                    modifier: selectedOption,
+                                })
+                            }
+                            className="w-full bg-[#4F372F] mt-2 py-2 bg-brown-600 text-white rounded-full"
+                            disabled={!selectedOption && item.modifiers && item.modifiers.length > 0}
+                        >
+                            Add to Order - R${totalPrice}
+                        </button>
                     </div>
-
-                    <button
-                        onClick={() =>
-                            onAddToCart({
-                                id: item.id,
-                                name: item.name,
-                                price: selectedOption ? selectedOption.price : item.price,
-                                quantity,
-                                description: item.description,
-                                image: item.images?.[0]?.image,
-                                modifier: selectedOption,
-                            })
-                        }
-                        className="w-full bg-[#4F372F] mt-2 py-2 bg-brown-600 text-white rounded-full"
-                        disabled={!selectedOption && item.modifiers && item.modifiers.length > 0}
-                    >
-                        Add to Order - R${totalPrice}
-                    </button>
-
                 </div>
             </div>
         </div>
