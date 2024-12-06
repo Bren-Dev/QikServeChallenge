@@ -48,16 +48,18 @@ yarn dev
 
 # Estrutura do projeto
 
+```plaintext
 📂 src/
 ├── 📂 app/
-│ ├── 📂 components/ # Componentes reutilizáveis
-│ ├── 📂 redux/ # Slices e store do Redux
-│ ├── 📂 styles/ # Estilos globais e configurações do Tailwind CSS
-│ ├── 📂 assets/ # Imagens e outros arquivos estáticos
-├── 📂 public/ # Arquivos públicos como favicon e imagens estáticas
-│ 📄 page.tsx # Página do Next.js
-├── 📄 .env.local # Variáveis de ambiente (não incluído no repositório)
-└── 📄 tailwind.config.js # Configuração do Tailwind CSS
+│   ├── 📂 components/     # Componentes reutilizáveis
+│   ├── 📂 redux/          # Slices e store do Redux
+│   ├── 📂 styles/         # Estilos globais e configurações do Tailwind CSS
+│   ├── 📂 assets/         # Imagens e outros arquivos estáticos
+├── 📂 public/             # Arquivos públicos como favicon e imagens estáticas
+│   📄 page.tsx            # Página do Next.js
+├── 📄 .env.local          # Variáveis de ambiente (não incluído no repositório)
+└── 📄 tailwind.config.js  # Configuração do Tailwind CSS
+```
 
 # **Sobre mim**
 
