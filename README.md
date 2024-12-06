@@ -1,117 +1,62 @@
-# Delivery
+# Delivery App
 
-This is a Next.js project created with create-next-app.
+## Descrição
 
-1. Table of Contents
-2. Getting Started
-3. Project Structure
-4. Assumptions and Decisions
-5. Technologies and Tools
-6. How to Run
-7. Learn More
-8. Deployment
-9. About Me
+Este é um aplicativo de delivery desenvolvido com **Next.js**, **React.js**, **Redux** e **Tailwind CSS**. O objetivo é oferecer uma experiência intuitiva e rápida para explorar o menu, adicionar itens ao carrinho e finalizar pedidos.
 
-## Getting Started
+## Funcionalidades
 
-To run the project locally:
+- Visualização de menu com seções categorizadas.
+- Busca por itens no menu.
+- Adição e remoção de itens do carrinho.
+- Modal de detalhes do produto.
+- Interface responsiva com funcionalidades otimizadas para dispositivos móveis.
 
-Install the dependencies:
+---
 
-bash
-Copiar código
-npm install
+## **Como executar o projeto**
 
-# or
+### Pré-requisitos
 
-yarn install
+Certifique-se de ter instalado:
 
-# or
+- **Node.js** (versão 16 ou superior).
+- **npm** ou **yarn**.
 
-pnpm install
+### Passos
 
-# or
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd seu-repositorioInstale as dependências do projeto:
+   ```
+2. Instale as dependências do projeto:
+   ```bash
+   npm install ou yarn install
+   ```
+3. Execute o ambiente de desenvolvimento:
+   npm run dev
 
-bun install
-Start the development server:
-
-bash
-Copiar código
-npm run dev
-
-# or
+# ou
 
 yarn dev
 
-# or
+4. Acesse o projeto no navegador:
+   http://localhost:3000
 
-pnpm dev
+# Estrutura do projeto
 
-# or
+📂 src/
+├── 📂 app/
+│ ├── 📂 components/ # Componentes reutilizáveis
+│ ├── 📂 redux/ # Slices e store do Redux
+│ ├── 📂 styles/ # Estilos globais e configurações do Tailwind CSS
+│ ├── 📂 assets/ # Imagens e outros arquivos estáticos
+├── 📂 public/ # Arquivos públicos como favicon e imagens estáticas
+│ 📄 page.tsx # Página do Next.js
+├── 📄 .env.local # Variáveis de ambiente (não incluído no repositório)
+└── 📄 tailwind.config.js # Configuração do Tailwind CSS
 
-bun dev
-Open http://localhost:3000 in your browser to view the application.
+# **Sobre mim**
 
-## Project Structure
-
-The project uses the following folder structure:
-
-app/ - Contains the main application code following the Next.js App Router paradigm.
-app/page.tsx - Entry point for the main page. You can modify this file to edit the homepage.
-public/ - Static assets such as images or favicon.
-styles/ - Global styles for the application.
-Assumptions and Decisions
-Assumptions:
-The audience for this project is familiar with basic web development and Next.js concepts.
-The app is optimized for performance using server-side rendering (SSR) and Next.js features like dynamic routing and font optimization.
-Decisions:
-Font Optimization: We use next/font to integrate and optimize Geist, providing a modern and lightweight typography solution.
-TypeScript: The project is developed using TypeScript to improve code quality, type safety, and maintainability.
-Bundler Choice: We support multiple package managers (npm, yarn, pnpm, and bun) for flexibility.
-Technologies and Tools
-Framework: Next.js
-Language: TypeScript
-Styling: Tailwind CSS or styled-components (if applicable)
-Fonts: Geist (optimized using next/font)
-Deployment: Vercel
-How to Run
-Clone the repository:
-
-bash
-Copiar código
-git clone https://github.com/your-repo/project.git
-cd project
-Install dependencies:
-
-bash
-Copiar código
-npm install
-Run the development server:
-
-bash
-Copiar código
-npm run dev
-Access the app at http://localhost:3000.
-
-For production:
-
-Build the application:
-
-bash
-Copiar código
-npm run build
-Start the server:
-
-bash
-Copiar código
-npm start
-Learn More
-Next.js Documentation - Learn about Next.js features and API.
-Learn Next.js - Interactive tutorial for beginners.
-Next.js GitHub Repository - Explore the source code and contribute.
-Deployment
-The project is designed to be deployed using the Vercel Platform. Vercel offers a seamless deployment experience for Next.js apps. For detailed instructions, refer to Next.js deployment documentation.
-
-## About Me
-
-I am Brenda and a passionate developer focused in modern web technologies, particularly React and Next.js. I focus on building scalable, maintainable, and user-friendly applications.
+Meu nome é **Brenda**, tenho 21 anos e sou uma desenvolvedora front-end apaixonada por criar interfaces modernas, responsivas e eficientes.
